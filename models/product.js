@@ -6,7 +6,8 @@ const productSchema = new mongoose.Schema(
       required: true,
     },
     brand: {
-      type: String,
+      type: mongoose.Schema.Types.ObjectId,
+      ref: "Brand",
     },
     image: {
       type: String,
@@ -20,9 +21,9 @@ const productSchema = new mongoose.Schema(
       type: Number,
       required: true,
     },
-    category: {
-      type: String,
-      required: true,
+category: {
+      type: mongoose.Schema.Types.ObjectId,
+      ref: "Category",
     },
     ratings: {
       type: Number,
@@ -34,4 +35,4 @@ const productSchema = new mongoose.Schema(
   { timestamps: true }
 );
 
-mongoose.model("Product", productSchema);
+module.exports = mongoose.model("Product", productSchema);
