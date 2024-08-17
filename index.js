@@ -1,3 +1,4 @@
+require("dotenv").config();
 const express = require("express");
 const app = express();
 const cors = require("cors");
@@ -9,7 +10,7 @@ const brandRouter = require("./routes/brandRouter");
 const categoryRouter = require("./routes/categoryRouter");
 // Database connection
 mongoose
-  .connect("mongodb://127.0.0.1:27017/productvista", {
+  .connect(process.env.MONGO_URL, {
     useNewUrlParser: true,
     useUnifiedTopology: true,
   })
@@ -20,7 +21,7 @@ mongoose
 // middlewares
 app.use(
   cors({
-    origin: ["http://localhost:5173"],
+    origin: ["http://localhost:5173", "https://filter-app-43abf.web.app"],
   })
 );
 app.use(express.json());
